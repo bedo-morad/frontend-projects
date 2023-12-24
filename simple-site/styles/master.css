@@ -1,0 +1,77 @@
+html, body, h1, ul, p {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    max-width: 800px;
+    min-width: 400px;
+}
+
+#container {
+    background-color: #601cfc;
+    border: 4px solid black;
+    max-width: 50%;
+    margin-top: 10px;
+    margin-left: 20px;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+h1 {
+    max-width: 100%;
+    color: #f0f0f0;
+    text-decoration: underline;
+    border: 4px solid black;
+    padding: 10px 0 10px 10px;
+    margin-top: 10px;
+}
+
+img {
+    max-width: 100%;
+    margin-top: 15px;
+    border: 4px solid black;
+}
+
+p {
+    color: #BBFC1C;
+}
+
+.first-p {
+    margin: 15px 0;
+    font-weight: 700;
+    font-size: 20px;
+
+}
+
+.hr-class {
+    border: 2px solid black;
+}
+
+ul {
+    list-style: none;
+    margin: 15px 0;
+}
+
+li {
+    font-size: 20px;
+    color: #BBFC1C;
+}
+
+strong {
+    color: black;
+
+}
+
+#last-hr {
+    border: 2px dotted green;
+}
+
+.outro {
+    font-size: 18px;
+    margin: 15px 0;
+}
+
+a {
+    color: #f0f0f0;
+}
