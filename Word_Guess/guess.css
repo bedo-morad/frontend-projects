@@ -10,13 +10,61 @@ body {
     margin: 0;
     background-color: #eee;
     font-family: Arial, Helvetica, sans-serif;
+    color: #333;
+}
+
+.header {
+    display: flex;
+    align-items: flex-start;
 }
 
 h1 {
+    width: 90%;
     text-align: center;
     margin: 0 0 50px;
     padding: 20px;
+    height: 75px;
     background-color: white;
+}
+
+.mode-changer {
+    background-color: #333333;
+    width: 10%;
+    margin: 0 0 50px;
+    padding: 30px;
+    height: 75px;
+    color: white;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.mode-changer:hover {
+    background-color: #d32f2f;
+}
+
+body.dark-mode .mode-changer {
+    background-color: #eee;
+    color: #333;
+}
+
+body.dark-mode .mode-changer:hover {
+    background-color: #bbb;
+}
+
+body.dark-mode {
+    background-color: #333;
+    color: #eee;
+}
+
+body.dark-mode .header, body.dark-mode .guess-game, body.dark-mode footer {
+    background-color: #555;
+}
+
+body.dark-mode input {
+    background-color: #555;
+    color: #eee;
+    border-color: #eee;
 }
 
 .guess-game {

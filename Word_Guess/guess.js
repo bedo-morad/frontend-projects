@@ -4,6 +4,11 @@ document.title = gameName;
 document.querySelector("h1").innerHTML = gameName;
 document.querySelector("footer").innerHTML = `${gameName} created by bedo &copy; ${new Date().getFullYear()}`
 
+//dark mode
+document.querySelector(".mode-changer").addEventListener("click", function() {
+    document.body.classList.toggle("dark-mode");
+    this.textContent = document.body.classList.contains("dark-mode") ? "Light mode" : "Dark mode";
+});
 
 //setting game options
 let numberOfTries = 5;
