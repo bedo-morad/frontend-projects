@@ -5,9 +5,21 @@ document.querySelector("h1").innerHTML = gameName;
 document.querySelector("footer").innerHTML = `${gameName} created by bedo &copy; ${new Date().getFullYear()}`
 
 //dark mode
-document.querySelector(".mode-changer").addEventListener("click", function() {
-    document.body.classList.toggle("dark-mode");
-    this.textContent = document.body.classList.contains("dark-mode") ? "Light mode" : "Dark mode";
+// target the button using the data attribute we added earlier
+const button = document.querySelector(".mode-changer");
+
+button.addEventListener("click", () => {
+    // get the current theme from the body
+    const currentTheme = document.querySelector("html").getAttribute("data-theme");
+
+    // switch the theme based on the current value of the data-theme attribute
+    const newTheme = currentTheme === "dark" ? "light" : "dark";
+
+    // update the button text
+    button.innerText = newTheme === "dark" ? "Change to light theme" : "Change to dark theme";
+
+    // update theme attribute on HTML to switch theme in CSS
+    document.querySelector("html").setAttribute("data-theme", newTheme);
 });
 
 //setting game options
