@@ -31,7 +31,7 @@ function generateInput() {
     const inputsContainer = document.querySelector(".inputs");
 
     //create main try div
-    for (let i = 1; i <= numberOfTries ; i++) {
+    for (let i = 1; i <= numberOfTries; i++) {
         const tryDiv = document.createElement("div");
         tryDiv.classList.add(`try-${i}`);
         tryDiv.innerHTML = `<span>Try ${i}</span>`;
@@ -49,7 +49,45 @@ function generateInput() {
         }
         inputsContainer.appendChild(tryDiv);
     }
+    //focus on the first input in the first try
     inputsContainer.children[0].children[1].focus();
+
+    //Disable all inputs except the first one
+    const inputsInDisabledDiv = document.querySelectorAll(".disabled-inputs input");
+    inputsInDisabledDiv.forEach((input) => {
+        input.disabled = true;
+    })
+
+    const inputs = document.querySelectorAll("input");
+    inputs.forEach((input,index) => {
+        //convert all input to uppercase
+        input.addEventListener("input", function () {
+            this.value = this.value.toUpperCase();
+            const nextInput = inputs[index + 1];
+            if (nextInput) {
+                nextInput.focus();
+            }
+        })
+
+        input.addEventListener("keydown", function (event) {
+            const currentIndex = Array.from(inputs).indexOf(event.target);
+            if (event.key === "ArrowRight"){
+                const nextInput = currentIndex+ 1;
+                if (nextInput < inputs.length) {
+                    inputs[nextInput].focus();
+                }
+            }
+            if (event.key === "ArrowLeft"){
+                const previousInput = currentIndex - 1;
+                if (previousInput >= 0) {
+                    inputs[previousInput].focus();
+                }
+            }
+            if (event.key === "Backspace" || event.key === "Delete"){
+                this.value = "";
+            }
+        })
+    })
 }
 
 window.onload = function () {
