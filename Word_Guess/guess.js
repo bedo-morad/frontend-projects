@@ -23,9 +23,15 @@ button.addEventListener("click", () => {
 });
 
 //setting game options
-let numberOfTries = 5;
+let numberOfTries = 6;
 let numberOfLetters = 6;
 let currentTry = 1;
+
+//manage words
+let wordToGuess = "";
+//generate words with 6 letters only
+const words = ["SCHOOL", "BOTTLE", "BASKET", "BANANA", "LEMONS", "APPLES", "ORANGE"];
+wordToGuess = words[Math.floor(Math.random() * words.length)].toLowerCase()
 
 function generateInput() {
     const inputsContainer = document.querySelector(".inputs");
@@ -59,7 +65,7 @@ function generateInput() {
     })
 
     const inputs = document.querySelectorAll("input");
-    inputs.forEach((input,index) => {
+    inputs.forEach((input, index) => {
         //convert all input to uppercase
         input.addEventListener("input", function () {
             this.value = this.value.toUpperCase();
@@ -71,23 +77,52 @@ function generateInput() {
 
         input.addEventListener("keydown", function (event) {
             const currentIndex = Array.from(inputs).indexOf(event.target);
-            if (event.key === "ArrowRight"){
-                const nextInput = currentIndex+ 1;
+            if (event.key === "ArrowRight") {
+                const nextInput = currentIndex + 1;
                 if (nextInput < inputs.length) {
                     inputs[nextInput].focus();
                 }
             }
-            if (event.key === "ArrowLeft"){
+            if (event.key === "ArrowLeft") {
                 const previousInput = currentIndex - 1;
                 if (previousInput >= 0) {
                     inputs[previousInput].focus();
                 }
             }
-            if (event.key === "Backspace" || event.key === "Delete"){
+            if (event.key === "Backspace" || event.key === "Delete") {
                 this.value = "";
             }
         })
     })
+}
+
+const guessButton = document.querySelector(".check");
+guessButton.addEventListener("click", handleGuess);
+console.log(wordToGuess);
+
+function handleGuess() {
+    let successGuess = true;
+    for (let i = 1; i <= numberOfLetters; i++) {
+        const inputField = document.querySelector(`#guess-${currentTry}-letter-${i}`);
+        const letter = inputField.value.toLowerCase();
+        const actualLetter = wordToGuess[i - 1];
+
+        //game logic
+        //the letter is correct and in the right place
+        if (letter === actualLetter) {
+            inputField.classList.add("yes-in-place");
+        }
+        //the letter is correct but in the wrong place
+        else if (wordToGuess.includes(letter)) {
+            inputField.classList.add("not-in-place");
+            successGuess = false;
+        }
+        //the letter is wrong
+        else {
+            inputField.classList.add("no");
+            successGuess = false;
+        }
+    }
 }
 
 window.onload = function () {

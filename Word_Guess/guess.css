@@ -103,14 +103,14 @@ h1 {
                 }
 
                 &.yes-in-place {
-                    background-color: #f89e13;
-                    border: #f89e13;
+                    background-color: #18ba89;
+                    border: #18ba89;
                     color: white;
                 }
 
                 &.not-in-place {
-                    background-color: #18ba89;
-                    border: #18ba89;
+                    background-color: #f89e13;
+                    border: #f89e13;
                     color: white;
                 }
 
@@ -119,6 +119,43 @@ h1 {
                     border: #27303f;
                     color: white;
                 }
+            }
+        }
+
+        .control {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 500px;
+            margin: 30px auto;
+            gap: 10px;
+
+            .check {
+                background-color: var(--primery-color);
+                color: var(--primery-color-font);
+                flex: 1;
+            }
+
+            .hint {
+                background-color: var(--color-bg-sec);
+                color: var(--color-fg-sec);
+                width: fit-content;
+            }
+
+            button {
+                border: none;
+                padding: 15px 20px;
+                font-size: 25px;
+                border-radius: 6px;
+                cursor: pointer;
+                font-weight: bold;
+            }
+
+            button:disabled {
+                background-color: var(--color-bg-sec);
+                color: var(--color-fg-sec);
+                opacity: 0.4;
+                cursor: no-drop;
             }
         }
     }
@@ -139,11 +176,11 @@ h1 {
                 margin-right: 10px;
 
                 &.in-place {
-                    background-color: #f89e13;
+                    background-color: #18ba89;
                 }
 
                 &.not-in-place {
-                    background-color: #18ba89;
+                    background-color: #f89e13;
                 }
 
                 &.no {
