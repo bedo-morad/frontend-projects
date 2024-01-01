@@ -27,11 +27,15 @@ let numberOfTries = 6;
 let numberOfLetters = 6;
 let currentTry = 1;
 
-//manage words
 let wordToGuess = "";
 //generate words with 6 letters only
-const words = ["SCHOOL", "BOTTLE", "BASKET", "BANANA", "LEMONS", "APPLES", "ORANGE"];
-wordToGuess = words[Math.floor(Math.random() * words.length)].toLowerCase()
+async function fetchWords() {
+    let response = await fetch('https://api.datamuse.com/words?ml=ringing+in+the+ears&sp=??????&max=100');
+    let data = await response.json();
+    return data
+        .map(wordObj => wordObj.word.toUpperCase())
+        .filter(word => word !== '??????');// filter out '??????'
+}
 
 function generateInput() {
     const inputsContainer = document.querySelector(".inputs");
@@ -98,7 +102,6 @@ function generateInput() {
 
 const guessButton = document.querySelector(".check");
 guessButton.addEventListener("click", handleGuess);
-console.log(wordToGuess);
 
 function handleGuess() {
     let successGuess = true;
@@ -125,6 +128,10 @@ function handleGuess() {
     }
 }
 
-window.onload = function () {
+window.onload = async function () {
+    const words = await fetchWords();
+    console.log(words);
+    wordToGuess = words[Math.floor(Math.random() * words.length)].toLowerCase()
+    console.log(wordToGuess);
     generateInput();
 }
