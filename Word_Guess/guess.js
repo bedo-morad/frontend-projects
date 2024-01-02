@@ -1,3 +1,4 @@
+//TODO: let player choose the number of tries and letters
 //setting game name
 let gameName = "Guess The Word";
 document.title = gameName;
@@ -29,6 +30,7 @@ let currentTry = 1;
 
 let wordToGuess = "";
 let messageArea = document.querySelector(".message");
+
 //generate words with 6 letters only
 async function fetchWords() {
     let response = await fetch('https://api.datamuse.com/words?ml=ringing+in+the+ears&sp=??????&max=100');
@@ -105,6 +107,7 @@ const guessButton = document.querySelector(".check");
 guessButton.addEventListener("click", handleGuess);
 
 function handleGuess() {
+    //TODO: check if the user entered all the letters
     let successGuess = true;
     for (let i = 1; i <= numberOfLetters; i++) {
         const inputField = document.querySelector(`#guess-${currentTry}-letter-${i}`);
@@ -139,10 +142,33 @@ function handleGuess() {
         guessButton.disabled = true;
         document.querySelector('.hint').disabled = true;
     } else {
-        console.log("you lost");
+        document.querySelector(`.try-${currentTry}`).classList.add("disabled-inputs");
+        const currentTryInputs = document.querySelectorAll(`.try-${currentTry} input`);
+        currentTryInputs.forEach((input) => {
+            input.disabled = true;
+        })
+
+        currentTry++;
+
+        const nextTryInputs = document.querySelectorAll(`.try-${currentTry} input`);
+        nextTryInputs.forEach((input) => {
+            input.disabled = false;
+        })
+
+        let element = document.querySelector(`.try-${currentTry}`);
+        if (element) {
+            document.querySelector(`.try-${currentTry}`).classList.remove("disabled-inputs");
+            element.children[1].focus();
+        } else {
+            messageArea.innerHTML = `you lost the word is <span>${wordToGuess}</span>`;
+            guessButton.disabled = true;
+            document.querySelector('.hint').disabled = true;
+            //TODO: add play again button
+        }
     }
 }
 
+// TODO: add hint button functionality
 window.onload = async function () {
     const words = await fetchWords();
     console.log(words);
