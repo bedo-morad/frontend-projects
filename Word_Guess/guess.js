@@ -15,8 +15,8 @@ button.addEventListener("click", () => {
     // switch the theme based on the current value of the data-theme attribute
     const newTheme = currentTheme === "dark" ? "light" : "dark";
 
-    // update the button text
-    button.innerText = newTheme === "dark" ? "Change to light theme" : "Change to dark theme";
+    // update the button icon
+    document.querySelector(".mode-icon").src = newTheme === "dark" ? "assets/light_mode_icon.svg" : "assets/dark_mode_icon.svg";
 
     // update theme attribute on HTML to switch theme in CSS
     document.querySelector("html").setAttribute("data-theme", newTheme);
@@ -28,6 +28,7 @@ let numberOfLetters = 6;
 let currentTry = 1;
 
 let wordToGuess = "";
+let messageArea = document.querySelector(".message");
 //generate words with 6 letters only
 async function fetchWords() {
     let response = await fetch('https://api.datamuse.com/words?ml=ringing+in+the+ears&sp=??????&max=100');
@@ -125,6 +126,20 @@ function handleGuess() {
             inputField.classList.add("no");
             successGuess = false;
         }
+    }
+    //check if the user won or lost
+    if (successGuess) {
+        messageArea.innerHTML = `you won in ${currentTry} tries and the word is <span>${wordToGuess}</span>`;
+        //add disabled class to all inputs
+        let allTries = document.querySelectorAll(".inputs > div");
+        allTries.forEach((tryDiv) => {
+            tryDiv.classList.add("disabled-inputs");
+        })
+        //disable the guess button
+        guessButton.disabled = true;
+        document.querySelector('.hint').disabled = true;
+    } else {
+        console.log("you lost");
     }
 }
 

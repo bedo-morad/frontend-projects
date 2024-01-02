@@ -37,7 +37,7 @@ body {
 }
 
 h1 {
-    width: 90%;
+    width: 95%;
     text-align: center;
     margin: 0 0 50px;
     padding: 20px;
@@ -47,11 +47,11 @@ h1 {
 }
 
 .mode-changer {
+    font-size: 15px;
+    text-align: center;
     background-color: var(--primery-color);
     color: var(--primery-color-font);
-    width: 10%;
-    margin: 0 0 50px;
-    padding: 30px;
+    width: 5%;
     height: 75px;
     border: none;
     cursor: pointer;
@@ -196,6 +196,24 @@ h1 {
     }
 }
 
+.message {
+    text-align: center;
+    font-size: 30px;
+    font-weight: bold;
+
+    span {
+        color: var(--primery-color);
+        font-weight: bold;
+        font-size: 50px;
+        display: block;
+        text-transform: capitalize;
+        margin-top: 10px;
+
+        p {
+            margin-top: 15px;
+        }
+    }
+}
 footer {
     text-align: center;
     padding: 20px;
