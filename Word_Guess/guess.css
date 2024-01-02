@@ -6,22 +6,26 @@
 }
 
 [data-theme="light"] {
-    --color-bg: #D9ECF5;
+    --color-bg: #fbf9f5;
     --color-fg: #001018;
     --color-bg-sec: #fff;
-    --color-fg-sec: #333;
-    --primery-color: #008080;
+    --color-fg-sec: #2b2e3a;
+    --primery-color: #57ac57;
     --primery-color-font: #fff;
+    --second-color: #e5ecff;
+    --second-color-font: #363e52;
 
 }
 
 [data-theme="dark"] {
-    --color-bg: #37474f;
-    --color-fg: white;
-    --color-bg-sec: #D9ECF5;
-    --color-fg-sec: #001018;
+    --color-bg: #13141c;
+    --color-fg: #d0d4e8;
+    --color-bg-sec: #313448;
+    --color-fg-sec: #e5ecff;
     --primery-color: #9E91E9;
-    --primery-color-font: #fff;
+    --primery-color-font: #e5ecff;
+    --second-color: #6e7b98;
+    --second-color-font: #e5ecff;
 }
 
 body {
@@ -103,20 +107,20 @@ h1 {
                 }
 
                 &.yes-in-place {
-                    background-color: #18ba89;
-                    border: #18ba89;
+                    background-color: #79b851;
+                    border: #79b851;
                     color: white;
                 }
 
                 &.not-in-place {
-                    background-color: #f89e13;
-                    border: #f89e13;
+                    background-color: #f3c237;
+                    border: #f3c237;
                     color: white;
                 }
 
                 &.no {
-                    background-color: #27303f;
-                    border: #27303f;
+                    background-color: #363e52;
+                    border: #363e52;
                     color: white;
                 }
             }
@@ -137,8 +141,8 @@ h1 {
             }
 
             .hint {
-                background-color: var(--color-bg-sec);
-                color: var(--color-fg-sec);
+                background-color: var(--second-color);
+                color: var(--second-color-font);
                 width: fit-content;
             }
 
@@ -165,8 +169,8 @@ h1 {
             display: flex;
             align-items: center;
             padding: 15px;
-            background-color: var(--color-bg-sec);
-            color: var(--color-fg-sec);
+            background-color: var(--second-color);
+            color: var(--second-color-font);
             margin-bottom: 10px;
 
             .key {
@@ -176,15 +180,15 @@ h1 {
                 margin-right: 10px;
 
                 &.in-place {
-                    background-color: #18ba89;
+                    background-color: #79b851;
                 }
 
                 &.not-in-place {
-                    background-color: #f89e13;
+                    background-color: #f3c237;
                 }
 
                 &.no {
-                    background-color: #27303f;
+                    background-color: #363e52;
                 }
             }
 
