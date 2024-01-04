@@ -1,9 +1,18 @@
 //TODO: let player choose the number of tries and letters
 //setting game name
-let gameName = "Guess The Word";
+let gameName = "AstroWord";
 document.title = gameName;
-document.querySelector("h1").innerHTML = gameName;
 document.querySelector("footer").innerHTML = `${gameName} created by bedo &copy; ${new Date().getFullYear()}`
+//splash screen
+const splashScreen = document.querySelector(".splash-screen");
+const startButton = document.querySelector(".splash-button");
+startButton.addEventListener("click", () => {
+    splashScreen.style.transition = 'opacity 1s ease-in-out';
+    splashScreen.style.opacity = 0;
+    setTimeout(function () {
+        splashScreen.style.display = 'none';
+    }, 1000);
+});
 
 //dark mode
 // target the button using the data attribute we added earlier
