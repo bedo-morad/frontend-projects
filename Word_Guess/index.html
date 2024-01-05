@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<!--suppress ALL -->
+<html data-theme="light" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title></title>
+    <link href="guess.css" rel="stylesheet">
+</head>
+<body>
+<div class="splash-screen">
+    <div class="splash-content">
+        <img src="assets/logo_full.png" alt="" class="logo-full">
+        <button class="splash-button">Enter</button>
+    </div>
+</div>
+<div class="header">
+    <div class="logo-icon">
+        <img alt="" src="assets/logo_icon.png" height="40" width="40">
+    </div>
+    <div class="logo-word">
+        <img alt="" src="assets/logo_word.png" height="40" width="400">
+    </div>
+    <button aria-label="Change to light theme"
+            class="mode-changer"
+    ><img alt="" class="mode-icon" src="assets/dark_mode_icon.svg"></button>
+</div>
+<div class="guess-game">
+    <div class="game-area">
+        <div class="inputs"></div>
+        <div class="control">
+            <button class="check">Check Word</button>
+            <button class="hint"><span></span> Hints</button>
+        </div>
+        <div class="message"></div>
+    </div>
+    <div class="key-colors">
+        <h2>key-colors</h2>
+        <div class="key-color">
+            <div class="key in-place"></div>
+            <div class="key-text">Letter is correct and is in place</div>
+        </div>
+        <div class="key-color">
+            <div class="key not-in-place"></div>
+            <div class="key-text">Letter is correct but not in place</div>
+        </div>
+        <div class="key-color">
+            <div class="key no"></div>
+            <div class="key-text">Letter is Wrong</div>
+        </div>
+    </div>
+</div>
+<footer>
+    <!--TODO: Add a FAQs-->
+    <!--TODO: Add a social media links-->
+    <!--TODO: Add contact info-->
+    <!--TODO: Add about page-->
+</footer>
+<script src="guess.js"></script>
+</body>
+</html>
