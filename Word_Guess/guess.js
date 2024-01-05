@@ -36,7 +36,9 @@ button.addEventListener("click", () => {
 let numberOfTries = 6;
 let numberOfLetters = 6;
 let currentTry = 1;
+let numberOfHints = 2;
 
+//managing game state
 let wordToGuess = "";
 let messageArea = document.querySelector(".message");
 
@@ -48,6 +50,11 @@ async function fetchWords() {
         .map(wordObj => wordObj.word.toUpperCase())
         .filter(word => word !== '??????');// filter out '??????'
 }
+
+//manage Hints
+document.querySelector('.hint span').innerHTML = numberOfHints;
+const getHintButton = document.querySelector('.hint');
+getHintButton.addEventListener('click', getHint);
 
 function generateInput() {
     const inputsContainer = document.querySelector(".inputs");
@@ -177,7 +184,27 @@ function handleGuess() {
     }
 }
 
-// TODO: add hint button functionality
+function getHint() {
+    if (numberOfHints > 0) {
+        numberOfHints--;
+        document.querySelector('.hint span').innerHTML = numberOfHints;
+    }
+    if (numberOfHints === 0) {
+        getHintButton.disabled = true;
+    }
+    const enabledInputs = document.querySelectorAll("input:not([disabled])");
+    const emptyEnabledInputs = Array.from(enabledInputs).filter(input => input.value === "");
+
+    if (emptyEnabledInputs.length > 0) {
+        const randomIndex = Math.floor(Math.random() * emptyEnabledInputs.length);
+        const randomInput = emptyEnabledInputs[randomIndex];
+        const indexOfFill = Array.from(enabledInputs).indexOf(randomInput);
+        if (indexOfFill !== -1) {
+            randomInput.value = wordToGuess[indexOfFill].toUpperCase();
+        }
+    }
+}
+
 window.onload = async function () {
     const words = await fetchWords();
     console.log(words);
