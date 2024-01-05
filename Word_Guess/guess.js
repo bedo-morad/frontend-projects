@@ -112,9 +112,6 @@ function generateInput() {
                     inputs[previousInput].focus();
                 }
             }
-            if (event.key === "Backspace" || event.key === "Delete") {
-                this.value = "";
-            }
         })
     })
 }
@@ -149,14 +146,17 @@ function handleGuess() {
     //check if the user won or lost
     if (successGuess) {
         messageArea.innerHTML = `you won in ${currentTry} tries and the word is <span>${wordToGuess}</span>`;
+        if (numberOfHints === 2) {
+            messageArea.innerHTML = `you won in ${currentTry} tries, and the word is <span>${wordToGuess}</span>, and you didn't use any hints`;
+        }
         //add disabled class to all inputs
         let allTries = document.querySelectorAll(".inputs > div");
         allTries.forEach((tryDiv) => {
             tryDiv.classList.add("disabled-inputs");
         })
-        //disable the guess button
+        //disable the guess and hint button
         guessButton.disabled = true;
-        document.querySelector('.hint').disabled = true;
+        getHintButton.disabled = true;
     } else {
         document.querySelector(`.try-${currentTry}`).classList.add("disabled-inputs");
         const currentTryInputs = document.querySelectorAll(`.try-${currentTry} input`);
@@ -178,7 +178,7 @@ function handleGuess() {
         } else {
             messageArea.innerHTML = `you lost the word is <span>${wordToGuess}</span>`;
             guessButton.disabled = true;
-            document.querySelector('.hint').disabled = true;
+            getHintButton.disabled = true;
             //TODO: add play again button
         }
     }
@@ -204,6 +204,25 @@ function getHint() {
         }
     }
 }
+
+function handleBackspaceAndEnter(event) {
+    if (event.key === "Backspace") {
+        const inputs = document.querySelectorAll("input:not([disabled])");
+        const currentIndex = Array.from(inputs).indexOf(document.activeElement);
+        if (currentIndex > 0) {
+            const currentInput = inputs[currentIndex];
+            const previousInput = inputs[currentIndex - 1];
+            currentInput.value = "";
+            previousInput.value = "";
+            previousInput.focus();
+        }
+    }
+    if (event.key === "Enter") {
+        handleGuess();
+    }
+}
+
+document.addEventListener("keydown", handleBackspaceAndEnter);
 
 window.onload = async function () {
     const words = await fetchWords();
